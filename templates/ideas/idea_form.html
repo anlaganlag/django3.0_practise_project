@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
-{% load i18n  static %}
+{% load i18n crispy_forms_tags static %}
 
 {% block content %}
     <a href="{% url "ideas:idea_list" %}">{% trans "List of ideas" %}</a>
@@ -13,14 +12,14 @@
             {% trans "Add Idea" %}
         {% endif %}
     </h1>
-    {% crispy form %}
 
 
-<form action="." method="post">
+<form action="{{ request.path }}" method="post">
 {% csrf_token %}
-<input type="submit" value="submit">
-{% endblock %}
+{{ form.as_p }}
+<p>
+    <button type="submit">{% trans "Save" %}</button>
+</p>
+</form>
+{% endblock  %}
 
-{% block js %}
-    <script src="{% static 'site/js/inlines.js' %}"></script>
-{% endblock %}
