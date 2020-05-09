@@ -22,13 +22,13 @@ def add_or_change_idea(request, pk=None):
         idea = get_object_or_404(Idea, pk=pk)
 
     if request.method == "POST":
-        form = IdeaForm( data=request.POST, files=request.FILES, instance=idea)
+        form = IdeaForm( request,data=request.POST, files=request.FILES, instance=idea)
 
         if form.is_valid():
             idea = form.save()
             return redirect("ideas:idea_detail", pk=idea.pk)
     else:
-        form = IdeaForm( instance=idea)
+        form = IdeaForm(request, instance=idea)
 
     context = {"idea": idea, "form": form}
     return render(request, "ideas/idea_form.html", context)
