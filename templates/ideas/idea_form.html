@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% load i18n  static %}
 
 {% block content %}
@@ -13,6 +14,11 @@
         {% endif %}
     </h1>
     {% crispy form %}
+
+
+<form action="." method="post">
+{% csrf_token %}
+<input type="submit" value="submit">
 {% endblock %}
 
 {% block js %}

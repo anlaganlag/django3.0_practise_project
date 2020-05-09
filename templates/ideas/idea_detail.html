@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n json_ld %}
+{% load i18n  %}
 
 {% block meta_tags %}
     <meta property="og:type" content="website" />
@@ -24,8 +24,6 @@
     {% if idea.picture_social %}
         <meta name="twitter:image" content="{{ idea.picture_social.url }}">
     {% endif %}
-
-    {% render_json_ld idea.structured_data %}
 {% endblock %}
 
 
@@ -43,7 +41,6 @@
             <span class="badge badge-pill badge-info">{{ category.translated_title }}</span>
         {% endfor %}
     </p>
-    <a href="{% url 'ideas:idea_handout' pk=idea.pk %}" class="btn btn-primary">{% trans "Download handout" %}</a>
     <a href="{% url 'ideas:change_idea' pk=idea.pk %}" class="btn btn-primary">{% trans "Change this idea" %}</a>
     <a href="{% url 'ideas:delete_idea' pk=idea.pk %}" class="btn btn-danger">{% trans "Delete this idea" %}</a>
 {% endblock %}
